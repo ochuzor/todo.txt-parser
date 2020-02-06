@@ -9,3 +9,7 @@ export const getTokens = (str: string): string[] => {
         .map(t => t.trim())
         .filter(t => !!t);
 };
+
+export const isTaskCompleted = (tokens: string[]): boolean => {
+    return tokens[0] === 'x';
+}
