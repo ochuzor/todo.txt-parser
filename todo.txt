@@ -1,2 +1,3 @@
 [x] clean up readme file
 [x] change prettier settings to 4 char space
+[ ] copy over the basic code for the base setup
