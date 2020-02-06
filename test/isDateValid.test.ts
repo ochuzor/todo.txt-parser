@@ -8,7 +8,7 @@ describe('isDateValid', () => {
     it('date string with alphabet in DAY is NOT a valid date', () => {
         expect(isDateValid('2020-20-0a')).toEqual(false);
     });
-    
+
     it('date string with alphabet in MONTH is NOT a valid date', () => {
         expect(isDateValid('2020-ab-01')).toEqual(false);
     });
