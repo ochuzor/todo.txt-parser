@@ -30,4 +30,14 @@ describe('isTaskCompleted', () => {
         const tokens = ['find', 'x'];
         expect(isTaskCompleted(tokens)).toBe(false);
     });
+
+    it('isTaskCompleted: should return false with an empty token list', () => {
+        const tokens: string[] = [];
+        expect(isTaskCompleted(tokens)).toBeFalsy();
+    });
+
+    it('isTaskCompleted: task is not completed if preceded by priority marker', () => {
+        const tokens: string[] = ['(A)', 'x', 'Find', 'ticket', 'prices'];
+        expect(isTaskCompleted(tokens)).toBeFalsy();
+    });
 });

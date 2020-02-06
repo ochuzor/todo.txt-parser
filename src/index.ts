@@ -13,3 +13,11 @@ export const getTokens = (str: string): string[] => {
 export const isTaskCompleted = (tokens: string[]): boolean => {
     return tokens[0] === 'x';
 }
+
+const priorityMarkers = ['(A)', '(B)', '(C)', '(D)', '(E)']
+export const getPriority = (tokens: string[]): string => {
+    const [firstToken, secondToken] = tokens;
+    if (priorityMarkers.includes(firstToken)) return firstToken;
+    else if (firstToken === 'x' && priorityMarkers.includes(secondToken)) return secondToken;
+    else return '';
+}
