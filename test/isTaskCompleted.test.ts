@@ -3,7 +3,12 @@ import { isTaskCompleted } from '../src';
 describe('isTaskCompleted', () => {
     it('isTaskCompleted: should return true with "x"', () => {
         const tokens = ['x'];
-        expect(isTaskCompleted(tokens)).toEqual(true);
+        expect(isTaskCompleted(tokens)).toBe(true);
+    });
+
+    it('isTaskCompleted: should return true with "x"', () => {
+        const tokens = ['x', 'prepare', 'for', 'test'];
+        expect(isTaskCompleted(tokens)).toBe(true);
     });
 
     it('isTaskCompleted: should return false with capital X', () => {
@@ -38,6 +43,11 @@ describe('isTaskCompleted', () => {
 
     it('isTaskCompleted: task is not completed if preceded by priority marker', () => {
         const tokens: string[] = ['(A)', 'x', 'Find', 'ticket', 'prices'];
+        expect(isTaskCompleted(tokens)).toBeFalsy();
+    });
+
+    it('isTaskCompleted: completed marker in brackets is invalid', () => {
+        const tokens: string[] = ['(x)', 'concert', 'tickets', 'online'];
         expect(isTaskCompleted(tokens)).toBeFalsy();
     });
 });
