@@ -12,7 +12,15 @@ describe('getPriority', () => {
     });
 
     it('getPriority: should return an empty priority with invalid priority marker placement position', () => {
-        const tokens = ['Really', 'gotta', 'call', 'Mom', '(A)', '@phone', '@someday'];
+        const tokens = [
+            'Really',
+            'gotta',
+            'call',
+            'Mom',
+            '(A)',
+            '@phone',
+            '@someday',
+        ];
         expect(getPriority(tokens)).toEqual('');
     });
 

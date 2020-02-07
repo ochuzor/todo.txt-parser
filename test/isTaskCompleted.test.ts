@@ -25,8 +25,8 @@ describe('isTaskCompleted', () => {
         const tokens = ['xylophone', 'lesson'];
         expect(isTaskCompleted(tokens)).toBe(false);
     });
-    
-    it('isTaskCompleted: should return false with \'(A) text tom\'', () => {
+
+    it("isTaskCompleted: should return false with '(A) text tom'", () => {
         const tokens = ['(A)', 'text', 'tom'];
         expect(isTaskCompleted(tokens)).toBe(false);
     });
