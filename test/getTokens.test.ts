@@ -12,4 +12,8 @@ describe('getTokens', () => {
     it('getTokens: multiple empty spaces returns not empty string token', () => {
         expect(getTokens('call   \n   mom')).toEqual(['call', 'mom']);
     });
+
+    it('getTokens: priority marker should be separated with space', () => {
+        expect(getTokens('(B)->Submit TPS report')).toEqual(['(B)->Submit', 'TPS', 'report']);
+    });
 });

@@ -12,4 +12,8 @@ describe('isDateValid', () => {
     it('date string with alphabet in MONTH is NOT a valid date', () => {
         expect(isValidDate('2020-ab-01')).toEqual(false);
     });
+
+    it('isValidDate: handle empty string', () => {
+        expect(isValidDate('')).toBeFalsy();
+    });
 });
