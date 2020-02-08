@@ -70,3 +70,18 @@ export const getDateOfCreation = (tokens: string[]): string => {
 
     return '';
 };
+
+const filterByChar = (chr: string, tokens: string[]): string[] => {
+    return tokens.reduce((acc, token) => {
+        if (token.startsWith(chr)) {
+            const val = token.replace(chr, '');
+            if (val !== '') acc.push(val);
+        }
+
+        return acc;
+    }, [] as string[]);
+};
+
+export const getProjects = filterByChar.bind(null, '+');
+
+export const getContexts = filterByChar.bind(null, '@');
