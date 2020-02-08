@@ -14,6 +14,10 @@ describe('getTokens', () => {
     });
 
     it('getTokens: priority marker should be separated with space', () => {
-        expect(getTokens('(B)->Submit TPS report')).toEqual(['(B)->Submit', 'TPS', 'report']);
+        expect(getTokens('(B)->Submit TPS report')).toEqual([
+            '(B)->Submit',
+            'TPS',
+            'report',
+        ]);
     });
 });

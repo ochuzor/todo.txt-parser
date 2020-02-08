@@ -32,18 +32,17 @@ const removeCompletionMarker = (tokens: string[]): string[] => {
     if (tokens[0] === 'x') return tokens.slice(1);
 
     return tokens.slice(0);
-}
+};
 
 const removePriorityMarker = (tokens: string[]): string[] => {
     if (priorityMarkers.includes(tokens[0])) return tokens.slice(1);
 
     return tokens.slice(0);
-}
+};
 
 const omitCompletionAndPriorityMarkers = (tokens: string[]): string[] => {
-    return removePriorityMarker(
-        removeCompletionMarker(tokens));
-}
+    return removePriorityMarker(removeCompletionMarker(tokens));
+};
 
 export const getDateOfCompletion = (tokens: string[]): string => {
     if (tokens.length < 2) return '';

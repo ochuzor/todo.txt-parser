@@ -12,7 +12,16 @@ describe('getDateOfCreation', () => {
     });
 
     it('getDateOfCreation: starts with priority marker, with date of completion', () => {
-        const tokens = ['(D)', '2011-03-02', '2011-03-01', 'Make', 'arrangement', 'for', 'new', 'coach'];
+        const tokens = [
+            '(D)',
+            '2011-03-02',
+            '2011-03-01',
+            'Make',
+            'arrangement',
+            'for',
+            'new',
+            'coach',
+        ];
         expect(getDateOfCreation(tokens)).toEqual('2011-03-01');
     });
 
@@ -37,25 +46,59 @@ describe('getDateOfCreation', () => {
     });
 
     it('getDateOfCreation: with completion marker and completion date', () => {
-        const tokens = ['x', '2011-03-02', '2011-03-01', 'Review', 'Tim\'s', 'pull', 
-            'request', '+TodoTxtTouch', '@github'];
+        const tokens = [
+            'x',
+            '2011-03-02',
+            '2011-03-01',
+            'Review',
+            "Tim's",
+            'pull',
+            'request',
+            '+TodoTxtTouch',
+            '@github',
+        ];
         expect(getDateOfCreation(tokens)).toEqual('2011-03-01');
     });
 
     it('getDateOfCreation: with compltetion marker and a creation date', () => {
-        const tokens = ['x', '2011-03-02', 'Review', 'Tim\'s', 'pull', 
-            'request', '+TodoTxtTouch', '@github'];
+        const tokens = [
+            'x',
+            '2011-03-02',
+            'Review',
+            "Tim's",
+            'pull',
+            'request',
+            '+TodoTxtTouch',
+            '@github',
+        ];
         expect(getDateOfCreation(tokens)).toEqual('2011-03-02');
     });
 
     it('getDateOfCreation: with completion marker, priority marker and completion date', () => {
-        const tokens = ['x', '(C)', '2011-03-02', '2011-03-01', 
-            'Review', 'Tim\'s', 'pull', 'request', '+TodoTxtTouch', '@github'];
+        const tokens = [
+            'x',
+            '(C)',
+            '2011-03-02',
+            '2011-03-01',
+            'Review',
+            "Tim's",
+            'pull',
+            'request',
+            '+TodoTxtTouch',
+            '@github',
+        ];
         expect(getDateOfCreation(tokens)).toEqual('2011-03-01');
     });
 
     it('getDateOfCreation: starts with dates', () => {
-        const tokens = ['2011-03-02', '2011-03-01', 'Prepare', 'for', 'the', 'presentation'];
+        const tokens = [
+            '2011-03-02',
+            '2011-03-01',
+            'Prepare',
+            'for',
+            'the',
+            'presentation',
+        ];
         expect(getDateOfCreation(tokens)).toEqual('2011-03-01');
     });
 
