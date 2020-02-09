@@ -28,7 +28,7 @@ describe('isDateValid', () => {
     it('isValidDate: handle empty string', () => {
         expect(isValidDate('')).toBeFalsy();
     });
-    
+
     it('isValidDate: should handle correct date value but invalid string format', () => {
         expect(isValidDate('06-11-1999')).toBeFalsy();
     });

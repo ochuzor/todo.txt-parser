@@ -12,7 +12,7 @@ describe('todoTextToDto', () => {
             dateOfCompletion: '',
             projects: [],
             contexts: [],
-            tags: []
+            tags: [],
         };
 
         expect(result).toEqual(expected);
@@ -30,12 +30,29 @@ describe('todoTextToDto', () => {
             projects: [],
             contexts: [],
             tags: [
-                { name: 'due', value: '2014-04-15'},
-                { name: 'for', value: 'me'},
-                { name: 'for', value: 'wife'}
-            ]
+                { name: 'due', value: '2014-04-15' },
+                { name: 'for', value: 'me' },
+                { name: 'for', value: 'wife' },
+            ],
         };
 
         expect(result).toEqual(expected);
-    })
+    });
+
+    it('should handle empty text string', () => {
+        const text = '';
+        const result = todoTextToDto(text);
+        const expected = {
+            text: text,
+            isCompleted: false,
+            priority: '',
+            dateOfCreation: '',
+            dateOfCompletion: '',
+            projects: [],
+            contexts: [],
+            tags: [],
+        };
+
+        expect(result).toEqual(expected);
+    });
 });

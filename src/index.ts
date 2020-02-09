@@ -1,13 +1,13 @@
 const isDateFormatValid = (dateString: string): boolean => {
     // date format is 'YYYY-MM-DD'
     return /^(\d{4})-(\d{1,2})-(\d{1,2})$/.test(dateString);
-}
+};
 
 const isDateValueValid = (dateString: string): boolean => {
     // https://www.geeksforgeeks.org/how-to-check-a-date-is-valid-or-not-using-javascript/
     const d = new Date(dateString);
-    return d.getTime() === d.getTime();
-}
+    return !Number.isNaN(d.getTime());
+};
 
 export const isValidDate = (dateString: string): boolean => {
     return isDateFormatValid(dateString) && isDateValueValid(dateString);
@@ -138,6 +138,6 @@ export const todoTextToDto = (text: string): TodoDto => {
     todo.projects = getProjects(tokens);
     todo.contexts = getContexts(tokens);
     todo.tags = getTags(tokens);
-    
+
     return todo;
 };
