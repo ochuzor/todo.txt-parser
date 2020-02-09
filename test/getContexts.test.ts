@@ -32,12 +32,16 @@ describe('getContexts', () => {
     });
 
     it('getProjects: handle long string with one project and one context', () => {
-        const tokens = getTokens('(B) Schedule Goodwill pickup +GarageSale @phone');
+        const tokens = getTokens(
+            '(B) Schedule Goodwill pickup +GarageSale @phone'
+        );
         expect(getContexts(tokens)).toEqual(['phone']);
     });
 
     it('getProjects: handle multiple contexts', () => {
-        const tokens = getTokens('(A) Call Mom +Family +PeaceLoveAndHappiness @iphone @phone');
+        const tokens = getTokens(
+            '(A) Call Mom +Family +PeaceLoveAndHappiness @iphone @phone'
+        );
         expect(getContexts(tokens)).toEqual(['iphone', 'phone']);
     });
 
@@ -52,7 +56,9 @@ describe('getContexts', () => {
     });
 
     it('getProjects: handle completed tasks', () => {
-        const tokens = getTokens('x 2011-03-02 2011-03-01 Review Tim\'s pull request +TodoTxtTouch @github');
+        const tokens = getTokens(
+            "x 2011-03-02 2011-03-01 Review Tim's pull request +TodoTxtTouch @github"
+        );
         expect(getContexts(tokens)).toEqual(['github']);
     });
-})
+});

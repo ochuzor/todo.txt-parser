@@ -27,18 +27,27 @@ describe('getProjects', () => {
     });
 
     it('getProjects: handle long string with one project', () => {
-        const tokens = getTokens('Post signs around the neighborhood +GarageSale');
+        const tokens = getTokens(
+            'Post signs around the neighborhood +GarageSale'
+        );
         expect(getProjects(tokens)).toEqual(['GarageSale']);
     });
 
     it('getProjects: handle long string with no + sign but with a context', () => {
-        const tokens = getTokens('(B) Schedule Goodwill pickup +GarageSale @phone');
+        const tokens = getTokens(
+            '(B) Schedule Goodwill pickup +GarageSale @phone'
+        );
         expect(getProjects(tokens)).toEqual(['GarageSale']);
     });
 
     it('getProjects: handle multiple projects', () => {
-        const tokens = getTokens('(A) Call Mom +Family +PeaceLoveAndHappiness @iphone @phone');
-        expect(getProjects(tokens)).toEqual(['Family', 'PeaceLoveAndHappiness']);
+        const tokens = getTokens(
+            '(A) Call Mom +Family +PeaceLoveAndHappiness @iphone @phone'
+        );
+        expect(getProjects(tokens)).toEqual([
+            'Family',
+            'PeaceLoveAndHappiness',
+        ]);
     });
 
     it('getProjects: handle aritmetic contents', () => {
@@ -47,7 +56,9 @@ describe('getProjects', () => {
     });
 
     it('getProjects: handle completed tasks', () => {
-        const tokens = getTokens('x 2011-03-02 2011-03-01 Review Tim\'s pull request +TodoTxtTouch @github');
+        const tokens = getTokens(
+            "x 2011-03-02 2011-03-01 Review Tim's pull request +TodoTxtTouch @github"
+        );
         expect(getProjects(tokens)).toEqual(['TodoTxtTouch']);
     });
 });
