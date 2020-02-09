@@ -1,14 +1,13 @@
 import {
     filterByChar,
-    isDateFormatValid,
-    isDateValueValid,
+    isDateValid,
     omitCompletionAndPriorityMarkers,
     isPriorityMarker,
+    omitDates,
+    isValidTagTokens,
+    isContextString,
+    isProjectString,
 } from './todo.utils';
-
-export const isDateValid = (dateString: string): boolean => {
-    return isDateFormatValid(dateString) && isDateValueValid(dateString);
-};
 
 export const getTokens = (str: string): string[] => {
     return str
@@ -20,7 +19,6 @@ export const getTokens = (str: string): string[] => {
 export const isTaskCompleted = (tokens: string[]): boolean => {
     return tokens[0] === 'x';
 };
-
 
 export const getPriority = (tokens: string[]): string => {
     const [firstToken, secondToken] = tokens;
@@ -74,7 +72,7 @@ export interface TagDto {
 export const getTags = (tokens: string[]): TagDto[] => {
     return tokens.reduce((acc, token) => {
         const tagBits = token.split(':');
-        if (tagBits.length === 2) {
+        if (isValidTagTokens(tagBits)) {
             acc.push({
                 name: tagBits[0],
                 value: tagBits[1],
@@ -85,9 +83,27 @@ export const getTags = (tokens: string[]): TagDto[] => {
     }, [] as TagDto[]);
 };
 
-// export const getDescription = (tokens: string[]): string => {
-//     const t = remove
-// }
+/**
+ * removes everything that's completion marker, priority, date of completion and creation,
+ * contexts, projects and tags from the token list.
+ * then returns what's left as a concatenated string
+ *
+ * if you follow the rules described on https://github.com/todotxt/todo.txt on placement of
+ * data in your text (or be a little constructive), you would get a proper result.
+ * otherwise, the result may be jumbled up.
+ * @param tokens the string token values
+ */
+export const getDescription = (tokens: string[]): string => {
+    const t = omitDates(tokens).filter(token => {
+        return (
+            !isProjectString(token) &&
+            !isContextString(token) &&
+            !isValidTagTokens(token.split(':'))
+        );
+    });
+
+    return t.join(' ');
+};
 
 interface TodoDto {
     text: string;

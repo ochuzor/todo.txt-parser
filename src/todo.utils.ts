@@ -21,6 +21,14 @@ export const isDateValueValid = (dateString: string): boolean => {
     return !Number.isNaN(d.getTime());
 };
 
+export const isDateValid = (dateString: string): boolean => {
+    return isDateFormatValid(dateString) && isDateValueValid(dateString);
+};
+
+export const isPriorityMarker = (token: string): boolean => {
+    return priorityMarkers.includes(token);
+};
+
 export const removeCompletionMarker = (tokens: string[]): string[] => {
     if (tokens[0] === 'x') return tokens.slice(1);
 
@@ -33,8 +41,30 @@ export const removePriorityMarker = (tokens: string[]): string[] => {
     return tokens.slice(0);
 };
 
-export const omitCompletionAndPriorityMarkers = (tokens: string[]): string[] => {
+export const omitCompletionAndPriorityMarkers = (
+    tokens: string[]
+): string[] => {
     return removePriorityMarker(removeCompletionMarker(tokens));
 };
 
-export const isPriorityMarker = (token: string): boolean => priorityMarkers.includes(token);
+/**
+ * removes tokesn up to the first non-completion or creation date token
+ * @param tokens token values
+ */
+export const omitDates = (tokens: string[]): string[] => {
+    let ls = omitCompletionAndPriorityMarkers(tokens);
+    // yes, twice (completionDate and creationDate)
+    if (isDateValid(ls[0])) ls = ls.slice(1);
+    if (isDateValid(ls[0])) ls = ls.slice(1);
+
+    return ls;
+};
+
+export const isValidTagTokens = (tagTokens: string[]): boolean => {
+    return tagTokens.length === 2 && tagTokens[0] !== '' && tagTokens[1] !== '';
+};
+
+export const isProjectString = (token: string): boolean =>
+    token.startsWith('+');
+export const isContextString = (token: string): boolean =>
+    token.startsWith('@');

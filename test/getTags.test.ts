@@ -87,4 +87,18 @@ describe('getTags', () => {
         const result = getTags([]);
         expect(result).toEqual([]);
     });
+
+    it('should handle invalid tag format name:', () => {
+        const tokens = getTokens(
+            'file reports for: accounting, hr, others due:today'
+        );
+        const result = getTags(tokens);
+        expect(result).toEqual([{ name: 'due', value: 'today' }]);
+    });
+
+    it('should handle invalid tag format :value', () => {
+        const tokens = getTokens('get milk :shopping due:tomorrow');
+        const result = getTags(tokens);
+        expect(result).toEqual([{ name: 'due', value: 'tomorrow' }]);
+    });
 });

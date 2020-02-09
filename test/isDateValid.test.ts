@@ -1,4 +1,4 @@
-import { isDateValid } from '../src';
+import { isDateValid } from '../src/todo.utils';
 
 describe('isDateValid', () => {
     it('2020-02-06 is a valid date', () => {
