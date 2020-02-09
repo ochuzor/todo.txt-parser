@@ -1,6 +1,16 @@
-export const isValidDate = (dateString: string): boolean => {
+const isDateFormatValid = (dateString: string): boolean => {
     // date format is 'YYYY-MM-DD'
     return /^(\d{4})-(\d{1,2})-(\d{1,2})$/.test(dateString);
+}
+
+const isDateValueValid = (dateString: string): boolean => {
+    // https://www.geeksforgeeks.org/how-to-check-a-date-is-valid-or-not-using-javascript/
+    const d = new Date(dateString);
+    return d.getTime() === d.getTime();
+}
+
+export const isValidDate = (dateString: string): boolean => {
+    return isDateFormatValid(dateString) && isDateValueValid(dateString);
 };
 
 export const getTokens = (str: string): string[] => {
@@ -103,4 +113,18 @@ export const getTags = (tokens: string[]): TodoTag[] => {
 
         return acc;
     }, [] as TodoTag[]);
+};
+
+interface TodoDto {
+    isCompleted: boolean;
+    priority: string;
+}
+
+export const parseTodoText = (text: string): TodoDto => {
+    const tokens = getTokens(text);
+    const todo = {} as TodoDto;
+    todo.isCompleted = isTaskCompleted(tokens);
+    todo.priority = getPriority(tokens);
+    
+    return todo;
 };
