@@ -85,3 +85,22 @@ const filterByChar = (chr: string, tokens: string[]): string[] => {
 export const getProjects = filterByChar.bind(null, '+');
 
 export const getContexts = filterByChar.bind(null, '@');
+
+export interface TodoTag {
+    name: string;
+    value: string
+}
+
+export const getTags = (tokens: string[]): TodoTag[] => {
+    return tokens.reduce((acc, token) => {
+        const tagBits = token.split(':');
+        if(tagBits.length === 2) {
+            acc.push({
+                name: tagBits[0],
+                value: tagBits[1]
+            });
+        }
+
+        return acc;
+    }, [] as TodoTag[]);
+}
