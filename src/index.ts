@@ -106,7 +106,7 @@ export const getDescription = (tokens: string[]): string => {
 };
 
 interface TodoDto {
-    text: string;
+    description: string;
     isCompleted: boolean;
     priority: string;
     dateOfCreation: string;
@@ -120,7 +120,7 @@ export const todoTextToDto = (text: string): TodoDto => {
     const tokens = getTokens(text);
 
     const todo = {} as TodoDto;
-    todo.text = text;
+    todo.description = getDescription(tokens);
     todo.isCompleted = isTaskCompleted(tokens);
     todo.priority = getPriority(tokens);
     todo.dateOfCreation = getDateOfCreation(tokens);

@@ -5,7 +5,7 @@ describe('todoTextToDto', () => {
         const text = 'x 2011-03-03 Call Mom';
         const result = todoTextToDto(text);
         const expected = {
-            text: text,
+            description: 'Call Mom',
             isCompleted: true,
             priority: '',
             dateOfCreation: '2011-03-03',
@@ -22,7 +22,7 @@ describe('todoTextToDto', () => {
         const text = '(A) FILE TAXES! due:2014-04-15 for:me for:wife';
         const result = todoTextToDto(text);
         const expected = {
-            text: text,
+            description: 'FILE TAXES!',
             isCompleted: false,
             priority: '(A)',
             dateOfCreation: '',
@@ -43,7 +43,7 @@ describe('todoTextToDto', () => {
         const text = '';
         const result = todoTextToDto(text);
         const expected = {
-            text: text,
+            description: '',
             isCompleted: false,
             priority: '',
             dateOfCreation: '',
