@@ -8,6 +8,12 @@ import {
     isContextString,
     isProjectString,
 } from './todo.utils';
+import { TodoDto, TagDto } from './TodoDto';
+import {
+    contextListToString,
+    projectListToString,
+    tagListToString,
+} from './dto-string.utils';
 
 export const getTokens = (str: string): string[] => {
     return str
@@ -64,11 +70,6 @@ export const getProjects = filterByChar.bind(null, '+');
 
 export const getContexts = filterByChar.bind(null, '@');
 
-export interface TagDto {
-    name: string;
-    value: string;
-}
-
 export const getTags = (tokens: string[]): TagDto[] => {
     return tokens.reduce((acc, token) => {
         const tagBits = token.split(':');
@@ -105,18 +106,7 @@ export const getDescription = (tokens: string[]): string => {
     return t.join(' ');
 };
 
-interface TodoDto {
-    description: string;
-    isCompleted: boolean;
-    priority: string;
-    dateOfCreation: string;
-    dateOfCompletion: string;
-    projects: string[];
-    contexts: string[];
-    tags: TagDto[];
-}
-
-export const todoTextToDto = (text: string): TodoDto => {
+export const textToDto = (text: string): TodoDto => {
     const tokens = getTokens(text);
 
     const todo = {} as TodoDto;
@@ -130,4 +120,18 @@ export const todoTextToDto = (text: string): TodoDto => {
     todo.tags = getTags(tokens);
 
     return todo;
+};
+
+const collapseWhitespace = (text: string): string =>
+    text.replace(/\s+/g, ' ').trim();
+
+export const todoDtoToText = (dto: TodoDto): string => {
+    const completed = dto.isCompleted ? 'x' : '';
+    let text = `${completed} ${dto.dateOfCompletion} ${dto.dateOfCreation} ${dto.description}`;
+    text += ` ${projectListToString(dto.projects)} ${contextListToString(
+        dto.contexts
+    )}`;
+    text += ` ${tagListToString(dto.tags)}`;
+
+    return collapseWhitespace(text);
 };
