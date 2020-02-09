@@ -96,12 +96,12 @@ export const getProjects = filterByChar.bind(null, '+');
 
 export const getContexts = filterByChar.bind(null, '@');
 
-export interface TodoTag {
+export interface TagDto {
     name: string;
     value: string;
 }
 
-export const getTags = (tokens: string[]): TodoTag[] => {
+export const getTags = (tokens: string[]): TagDto[] => {
     return tokens.reduce((acc, token) => {
         const tagBits = token.split(':');
         if (tagBits.length === 2) {
@@ -112,19 +112,32 @@ export const getTags = (tokens: string[]): TodoTag[] => {
         }
 
         return acc;
-    }, [] as TodoTag[]);
+    }, [] as TagDto[]);
 };
 
 interface TodoDto {
+    text: string;
     isCompleted: boolean;
     priority: string;
+    dateOfCreation: string;
+    dateOfCompletion: string;
+    projects: string[];
+    contexts: string[];
+    tags: TagDto[];
 }
 
-export const parseTodoText = (text: string): TodoDto => {
+export const todoTextToDto = (text: string): TodoDto => {
     const tokens = getTokens(text);
+
     const todo = {} as TodoDto;
+    todo.text = text;
     todo.isCompleted = isTaskCompleted(tokens);
     todo.priority = getPriority(tokens);
+    todo.dateOfCreation = getDateOfCreation(tokens);
+    todo.dateOfCompletion = getDateOfCompletion(tokens);
+    todo.projects = getProjects(tokens);
+    todo.contexts = getContexts(tokens);
+    todo.tags = getTags(tokens);
     
     return todo;
 };
