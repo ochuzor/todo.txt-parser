@@ -66,5 +66,6 @@ export const isValidTagTokens = (tagTokens: string[]): boolean => {
 
 export const isProjectString = (token: string): boolean =>
     token.startsWith('+');
+
 export const isContextString = (token: string): boolean =>
     token.startsWith('@');

@@ -1,4 +1,5 @@
-import { getTags, getTokens } from '../src';
+import { getTags } from '../src';
+import {getTokens} from '../src/text-dto.utils';
 
 describe('getTags', () => {
     it('should return tags dates', () => {

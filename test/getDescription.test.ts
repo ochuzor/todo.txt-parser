@@ -1,4 +1,5 @@
-import { getDescription, getTokens } from '../src';
+import { getDescription } from '../src';
+import {getTokens} from '../src/text-dto.utils';
 
 describe('getDescription', () => {
     it('should return description with completion', () => {

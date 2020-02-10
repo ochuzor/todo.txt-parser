@@ -1,4 +1,4 @@
-import { getTokens } from '../src';
+import {getTokens} from '../src/text-dto.utils';
 
 describe('getTokens', () => {
     it('getTokens: returns an array of string', () => {

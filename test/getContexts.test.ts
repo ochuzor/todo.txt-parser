@@ -1,4 +1,5 @@
-import { getContexts, getTokens } from '../src';
+import { getContexts } from '../src';
+import {getTokens} from '../src/text-dto.utils';
 
 describe('getContexts', () => {
     it('getContexts: just one word', () => {

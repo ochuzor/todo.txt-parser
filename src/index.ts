@@ -13,14 +13,12 @@ import {
     contextListToString,
     projectListToString,
     tagListToString,
+    collapseWhitespace,
 } from './dto-string.utils';
 
-export const getTokens = (str: string): string[] => {
-    return str
-        .split(' ')
-        .map(t => t.trim())
-        .filter(t => !!t);
-};
+import {
+    getTokens,
+} from './text-dto.utils';
 
 export const isTaskCompleted = (tokens: string[]): boolean => {
     return tokens[0] === 'x';
@@ -121,9 +119,6 @@ export const textToDto = (text: string): TodoDto => {
 
     return todo;
 };
-
-const collapseWhitespace = (text: string): string =>
-    text.replace(/\s+/g, ' ').trim();
 
 export const todoDtoToText = (dto: TodoDto): string => {
     const completed = dto.isCompleted ? 'x' : '';

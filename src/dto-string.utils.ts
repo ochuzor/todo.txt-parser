@@ -17,3 +17,6 @@ export const tagListToString = (tags: TagDto[]): string => {
         return ` ${acc} ${tag.name}:${tag.value}`;
     }, '');
 };
+
+export const collapseWhitespace = (text: string): string =>
+    text.replace(/\s+/g, ' ').trim();
