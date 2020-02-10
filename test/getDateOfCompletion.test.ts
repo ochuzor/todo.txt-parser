@@ -1,4 +1,4 @@
-import { getDateOfCompletion } from '../src';
+import { getDateOfCompletion } from '../src/text-dto.utils';
 
 describe('getDateOfCompletion', () => {
     it('getDateOfCompletion: returns empty string if no dates present', () => {

@@ -1,4 +1,4 @@
-import { getPriority } from '../src';
+import { getPriority } from '../src/text-dto.utils';
 
 describe('getPriority', () => {
     it('getPriority: returns correct priority', () => {

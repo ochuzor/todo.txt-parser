@@ -1,4 +1,4 @@
-import { isTaskCompleted } from '../src';
+import { isTaskCompleted } from '../src/text-dto.utils';
 
 describe('isTaskCompleted', () => {
     it('isTaskCompleted: should return true with "x"', () => {

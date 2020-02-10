@@ -1,4 +1,4 @@
-import { getDateOfCreation } from '../src';
+import { getDateOfCreation } from '../src/text-dto.utils';
 
 describe('getDateOfCreation', () => {
     it('getDateOfCreation: 2011-03-02 Document +TodoTxt task format => creation date is 2011-03-02', () => {

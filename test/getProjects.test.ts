@@ -1,5 +1,4 @@
-import { getProjects } from '../src';
-import {getTokens} from '../src/text-dto.utils';
+import { getTokens, getProjects } from '../src/text-dto.utils';
 
 describe('getProjects', () => {
     it('getProjects: just one word', () => {
