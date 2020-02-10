@@ -4,7 +4,7 @@ import {
     projectListToString,
     tagListToString,
     collapseWhitespace,
-} from './dto-string.utils';
+} from './dto-text.utils';
 
 import {
     getTokens,
