@@ -10,7 +10,7 @@ import {
 import {
     getProjectListString,
     getContextListString,
-    getTagsListString,
+    getTagListString,
     isTaskCompletedText,
 } from './text-index-dto.utils';
 
@@ -26,6 +26,6 @@ export const textToIndexDto = (text: string): TodoIndexDto => {
         dateOfCompletion: getDateOfCompletion(tokens),
         projects: getProjectListString(tokens),
         contexts: getContextListString(tokens),
-        tags: getTagsListString(tokens),
+        tags: getTagListString(tokens),
     } as TodoIndexDto;
 };
