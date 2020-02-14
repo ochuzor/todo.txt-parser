@@ -1,9 +1,13 @@
+export interface IDoc {
+    id?: string | number;
+}
+
 export interface TagDto {
     name: string;
     value: string;
 }
 
-export interface TodoDto {
+export interface TodoDto extends IDoc {
     description: string;
     isCompleted: boolean;
     priority: string;

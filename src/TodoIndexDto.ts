@@ -1,4 +1,6 @@
-export interface TodoIndexDto {
+import { IDoc } from './TodoDto';
+
+export interface TodoIndexDto extends IDoc {
     // stores the entire text used to create this index-dto.
     Text: string;
 
