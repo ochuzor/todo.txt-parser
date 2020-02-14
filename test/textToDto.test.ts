@@ -1,4 +1,4 @@
-import { textToDto } from '../src';
+import { textToDto } from '../src/dto.lib';
 
 describe('todoTextToDto', () => {
     it('should parse basic todo text', () => {

@@ -1,4 +1,4 @@
-import { todoDtoToText } from '../src';
+import { todoDtoToText } from '../src/dto.lib';
 
 describe('todoDtoToText', () => {
     it('todoDtoToText: should handle dto with creation date', () => {
