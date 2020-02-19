@@ -18,7 +18,7 @@ export const textToIndexDto = (text: string): TodoIndexDto => {
     const tokens = getTokens(text);
 
     return {
-        Text: text,
+        text,
         description: getDescription(tokens),
         isCompleted: isTaskCompletedText(tokens),
         priority: getPriority(tokens),

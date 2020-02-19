@@ -2,7 +2,7 @@ import { IDoc } from './TodoDto';
 
 export interface TodoIndexDto extends IDoc {
     // stores the entire text used to create this index-dto.
-    Text: string;
+    text: string;
 
     description: string;
     isCompleted: string;
