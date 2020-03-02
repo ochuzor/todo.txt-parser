@@ -8,23 +8,41 @@ describe('getContextListString', () => {
         expect(result).toEqual('computer');
     });
 
-    it('getContexts: handle empty string', () => {
+    it('getContextListString: handle empty string', () => {
         const tokens = getTokens('');
         const result = getContextListString(tokens);
         expect(result).toEqual('');
     });
 
-    it('getContexts: just the @ sign', () => {
+    it('getContextListString: just the @ sign', () => {
         const tokens = getTokens('@');
         const result = getContextListString(tokens);
         expect(result).toEqual('');
     });
 
-    it('getContexts: the @ sign and a space', () => {
+    it('getContextListString: the @ sign and a space', () => {
         const tokens = getTokens('@ home');
         const result = getContextListString(tokens);
         expect(result).toEqual('');
     });
 
-    // @todo add more tests...
+    it('getContextListString: should handle multiple contexts', () => {
+        const tokens = getTokens('Really gotta call Mom (A) @phone @someday');
+        const result = getContextListString(tokens);
+        expect(result).toEqual('phone, someday');
+    });
+
+    it('getContextListString: should handle texts with projects', () => {
+        const tokens = getTokens(
+            '(A) Call Mom +Family +PeaceLoveAndHappiness @iphone @phone'
+        );
+        const result = getContextListString(tokens);
+        expect(result).toEqual('iphone, phone');
+    });
+
+    it('getContextListString: should handle texts with no contexts', () => {
+        const tokens = getTokens('2011-03-02 Document +TodoTxt task format');
+        const result = getContextListString(tokens);
+        expect(result).toEqual('');
+    });
 });

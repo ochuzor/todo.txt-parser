@@ -1,4 +1,4 @@
-export { TagDto, TodoDto } from '../src/TodoDto';
-export { TodoIndexDto } from '../src/TodoIndexDto';
-export { textToDto, todoDtoToText } from './dto.lib';
-export { textToIndexDto } from './index-dto.lib';
+export * from '../src/TodoDto';
+export * from '../src/TodoIndexDto';
+export * from './dto.lib';
+export * from './index-dto.lib';

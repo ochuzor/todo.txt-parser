@@ -13,7 +13,7 @@ describe('getTagListString', () => {
             'watch a new episode of law and order episode:05 season:02'
         );
         const result = getTagListString(tokens);
-        expect(result).toEqual('episode:05 season:02');
+        expect(result).toEqual('episode:05, season:02');
     });
 
     it('should handle multiple tags scattered', () => {
@@ -22,7 +22,7 @@ describe('getTagListString', () => {
         );
         const result = getTagListString(tokens);
         expect(result).toEqual(
-            'id:t1 topic:network-security course:computer-networks'
+            'id:t1, topic:network-security, course:computer-networks'
         );
     });
 
@@ -51,13 +51,13 @@ describe('getTagListString', () => {
     it('multiple tags with same name', () => {
         const tokens = getTokens('take care of tasks id:1 id:2 id:3');
         const result = getTagListString(tokens);
-        expect(result).toEqual('id:1 id:2 id:3');
+        expect(result).toEqual('id:1, id:2, id:3');
     });
 
     it('multiple tags with same value', () => {
         const tokens = getTokens('setup test for id:101 ref:101 doc:101 @work');
         const result = getTagListString(tokens);
-        expect(result).toEqual('id:101 ref:101 doc:101');
+        expect(result).toEqual('id:101, ref:101, doc:101');
     });
 
     it('should handle multiple tags with same name and value', () => {
@@ -65,7 +65,7 @@ describe('getTagListString', () => {
             'x @test setup test for tag:test-101 repeated tag:test-101'
         );
         const result = getTagListString(tokens);
-        expect(result).toEqual('tag:test-101 tag:test-101');
+        expect(result).toEqual('tag:test-101, tag:test-101');
     });
 
     it('should handle an empty tag list', () => {

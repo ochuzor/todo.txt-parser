@@ -7,18 +7,18 @@ export const isTaskCompletedText = (tokens: string[]): string => {
 };
 
 export const getProjectListString = (tokens: string[]): string => {
-    return getProjects(tokens).join(' ');
+    return getProjects(tokens).join(', ');
 };
 
 export const getContextListString = (tokens: string[]): string => {
-    return getContexts(tokens).join(' ');
+    return getContexts(tokens).join(', ');
 };
 
 export const getTagListString = (tokens: string[]): string => {
     const text = tokens.reduce((acc, token) => {
         const tagBits = token.split(':');
         if (isValidTagTokens(tagBits)) {
-            acc += ` ${token}`;
+            acc += `${acc === '' ? token : ', ' + token}`;
         }
 
         return acc;
